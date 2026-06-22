@@ -1,5 +1,5 @@
 /** @type {import("prettier").Config} */
-export default {
+export default config = {
   printWidth: 80,
   tabWidth: 2,
   semi: true,
