@@ -1,0 +1,34 @@
+[
+  {
+    "id": 20,
+    "slug": "modern-masters",
+    "type": "exhibition",
+    "title": { "rendered": "Modern Masters" },
+    "excerpt": { "rendered": "Twelve works from the permanent collection." },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>Curated selection of 20th-century works spanning impressionism through early abstraction.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Highlights</h2>\n<!-- /wp:heading -->\n\n<!-- wp:list -->\n<ul><li>Van Gogh — <em>Starry Night Study</em></li><li>Monet — <em>Water Lilies Reflection</em></li><li>Kandinsky — <em>Composition VIII</em></li><li>Hopper — <em>Nighthawks</em></li></ul>\n<!-- /wp:list -->\n\n<!-- wp:block {\"ref\":512} /-->"
+    },
+    "meta": {
+      "summary": "Twelve works from the permanent collection.",
+      "start_date": "2025-03-01",
+      "end_date": "2025-08-31",
+      "artwork_ids": [42, 43, 44, 45, 46, 47]
+    }
+  },
+  {
+    "id": 21,
+    "slug": "light-and-color",
+    "type": "exhibition",
+    "title": { "rendered": "Light and Color" },
+    "excerpt": { "rendered": "Exploring the impressionist palette." },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>An intimate look at how light transforms perception across the impressionist canon.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:list -->\n<ul><li>Plein-air impressionism</li><li>Reflected light on water</li><li>Late Monet serial studies</li></ul>\n<!-- /wp:list -->"
+    },
+    "meta": {
+      "summary": "Exploring the impressionist palette.",
+      "start_date": "2025-09-15",
+      "end_date": "2026-01-10",
+      "artwork_ids": [43, 48, 49]
+    }
+  }
+]

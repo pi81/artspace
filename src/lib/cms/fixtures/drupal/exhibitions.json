@@ -1,0 +1,55 @@
+{
+  "data": [
+    {
+      "type": "node--exhibition",
+      "id": "c3d4e5f6-a003-4000-8000-000000000020",
+      "attributes": {
+        "title": "Modern Masters",
+        "path": { "alias": "/exhibitions/modern-masters" },
+        "field_summary": {
+          "value": "Twelve works from the permanent collection.",
+          "processed": "<p>Twelve works from the permanent collection.</p>"
+        },
+        "field_start_date": "2025-03-01",
+        "field_end_date": "2025-08-31",
+        "field_artwork_ids": [
+          "a1b2c3d4-e001-4000-8000-000000000042",
+          "a1b2c3d4-e001-4000-8000-000000000043",
+          "a1b2c3d4-e001-4000-8000-000000000044",
+          "a1b2c3d4-e001-4000-8000-000000000045",
+          "a1b2c3d4-e001-4000-8000-000000000046",
+          "a1b2c3d4-e001-4000-8000-000000000047"
+        ],
+        "body": {
+          "value": "<!-- wp:paragraph --><p>Curated selection of 20th-century works.</p><!-- /wp:paragraph -->",
+          "processed": "<!-- wp:paragraph -->\n<p>Curated selection of 20th-century works spanning impressionism through early abstraction.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Highlights</h2>\n<!-- /wp:heading -->\n\n<!-- wp:list -->\n<ul><li>Van Gogh — <em>Starry Night Study</em></li><li>Monet — <em>Water Lilies Reflection</em></li><li>Kandinsky — <em>Composition VIII</em></li><li>Hopper — <em>Nighthawks</em></li></ul>\n<!-- /wp:list -->\n\n<!-- wp:gallery {\"ids\":[1,2,3]} -->\n<figure class=\"wp-block-gallery\">…</figure>\n<!-- /wp:gallery -->",
+          "format": "gutenberg"
+        }
+      }
+    },
+    {
+      "type": "node--exhibition",
+      "id": "c3d4e5f6-a003-4000-8000-000000000021",
+      "attributes": {
+        "title": "Light and Color",
+        "path": { "alias": "/exhibitions/light-and-color" },
+        "field_summary": {
+          "value": "Exploring the impressionist palette.",
+          "processed": "<p>Exploring the impressionist palette.</p>"
+        },
+        "field_start_date": "2025-09-15",
+        "field_end_date": "2026-01-10",
+        "field_artwork_ids": [
+          "a1b2c3d4-e001-4000-8000-000000000043",
+          "a1b2c3d4-e001-4000-8000-000000000048",
+          "a1b2c3d4-e001-4000-8000-000000000049"
+        ],
+        "body": {
+          "value": "<!-- wp:paragraph --><p>An intimate look at light.</p><!-- /wp:paragraph -->",
+          "processed": "<!-- wp:paragraph -->\n<p>An intimate look at how light transforms perception across the impressionist canon.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:list -->\n<ul><li>Plein-air impressionism</li><li>Reflected light on water</li><li>Late Monet serial studies</li></ul>\n<!-- /wp:list -->",
+          "format": "gutenberg"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+@layer base {
+  .wp-block {
+    a:hover {
+      opacity: 0.85;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    em {
+      font-style: italic;
+    }
+  }
+
+  p,
+  .wp-block-paragraph {
+    line-height: 1.625;
+    margin-block: 0.75rem;
+  }
+
+  p:first-child,
+  .wp-block-paragraph:first-child {
+    margin-block-start: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  :is(h1, h2, h3, h4, h5, h6).wp-block-heading {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-block: 1.25rem 0.5rem;
+  }
+
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child,
+  h5:first-child,
+  h6:first-child,
+  :is(h1, h2, h3, h4, h5, h6).wp-block-heading:first-child {
+    margin-block-start: 0;
+  }
+
+  h1,
+  h1.wp-block-heading {
+    font-size: 2.25rem;
+  }
+
+  h2,
+  h2.wp-block-heading {
+    font-size: 1.875rem;
+  }
+
+  h3,
+  h3.wp-block-heading {
+    font-size: 1.5rem;
+  }
+
+  h4,
+  h4.wp-block-heading {
+    font-size: 1.25rem;
+  }
+
+  h5,
+  h5.wp-block-heading,
+  h6,
+  h6.wp-block-heading {
+    font-size: 1.125rem;
+  }
+
+  .wp-block-list {
+    margin-block: 0.75rem;
+    padding-left: 1.25rem;
+
+    :first-child {
+      margin-block-start: 0;
+    }
+
+    li {
+      line-height: 1.625;
+    }
+
+    li + li {
+      margin-block-start: 0.25rem;
+    }
+  }
+
+  ul.wp-block-list {
+    list-style: disc;
+  }
+
+  ol.wp-block-list {
+    list-style: decimal;
+  }
+}
