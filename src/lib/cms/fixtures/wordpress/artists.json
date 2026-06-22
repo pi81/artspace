@@ -1,0 +1,93 @@
+[
+  {
+    "id": 10,
+    "slug": "vincent-van-gogh",
+    "type": "artist",
+    "title": { "rendered": "Vincent van Gogh" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>Dutch post-impressionist painter whose bold colors and expressive brushwork profoundly influenced modern art.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Legacy</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Though he sold only one painting during his lifetime, van Gogh's work is now among the most celebrated in Western art.</p>\n<!-- /wp:paragraph -->"
+    },
+    "meta": {
+      "birth_year": 1853,
+      "death_year": 1890
+    }
+  },
+  {
+    "id": 11,
+    "slug": "claude-monet",
+    "type": "artist",
+    "title": { "rendered": "Claude Monet" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>French impressionist painter and founder of the movement, best known for his series of water lily paintings.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Giverny years</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>From his garden studio in Giverny, Monet pursued serial studies of light, atmosphere, and reflection on water.</p>\n<!-- /wp:paragraph -->"
+    },
+    "meta": {
+      "birth_year": 1840,
+      "death_year": 1926
+    }
+  },
+  {
+    "id": 12,
+    "slug": "wassily-kandinsky",
+    "type": "artist",
+    "title": { "rendered": "Wassily Kandinsky" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>Russian painter and art theorist, credited with painting one of the first purely abstract works.</p>\n<!-- /wp:paragraph -->"
+    },
+    "meta": {
+      "birth_year": 1866,
+      "death_year": 1944
+    }
+  },
+  {
+    "id": 13,
+    "slug": "grant-wood",
+    "type": "artist",
+    "title": { "rendered": "Grant Wood" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>American painter associated with the Regionalist movement, celebrated for scenes of Midwestern rural life.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Stone City</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Wood co-founded the Stone City Art Colony in Iowa, mentoring artists who shared his interest in local subject matter.</p>\n<!-- /wp:paragraph -->"
+    },
+    "meta": {
+      "birth_year": 1891,
+      "death_year": 1942
+    }
+  },
+  {
+    "id": 14,
+    "slug": "edward-hopper",
+    "type": "artist",
+    "title": { "rendered": "Edward Hopper" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>American realist painter whose spare compositions explore solitude, silence, and the psychology of modern life.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Hopper's use of light and shadow transforms everyday settings — diners, offices, gas stations — into scenes of quiet drama.</p>\n<!-- /wp:paragraph -->"
+    },
+    "meta": {
+      "birth_year": 1882,
+      "death_year": 1967
+    }
+  },
+  {
+    "id": 15,
+    "slug": "mary-cassatt",
+    "type": "artist",
+    "title": { "rendered": "Mary Cassatt" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>American impressionist painter and printmaker, known for intimate depictions of mothers and children.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Paris circle</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Cassatt exhibited with the Impressionists in Paris and helped shape American collecting through her advocacy of modern French art.</p>\n<!-- /wp:paragraph -->"
+    },
+    "meta": {
+      "birth_year": 1844,
+      "death_year": 1926
+    }
+  },
+  {
+    "id": 16,
+    "slug": "gustave-caillebotte",
+    "type": "artist",
+    "title": { "rendered": "Gustave Caillebotte" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>French impressionist painter and patron who supported his peers while producing sharply observed urban views.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>His unusual perspectives and plunging viewpoints bring a photographic clarity to scenes of contemporary Paris.</p>\n<!-- /wp:paragraph -->"
+    },
+    "meta": {
+      "birth_year": 1848,
+      "death_year": 1894
+    }
+  }
+]

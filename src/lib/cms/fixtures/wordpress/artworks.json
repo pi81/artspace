@@ -1,0 +1,178 @@
+[
+  {
+    "id": 42,
+    "slug": "starry-night-study",
+    "type": "artwork",
+    "title": { "rendered": "Starry Night Study" },
+    "content": {
+      "rendered": "<!-- wp:heading {\"level\":2} -->\n<h2>About this work</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Oil on canvas study, part of the <em>Modern Masters</em> exhibition.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"id\":99,\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://www.artic.edu/iiif/2/2d484387-2509-5e8e-2c43-22f9981972eb/full/843,/0/default.jpg\" alt=\"Starry Night Study\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:block {\"ref\":512} /-->"
+    },
+    "meta": {
+      "artist": "Vincent van Gogh",
+      "medium": "Oil on canvas",
+      "year": 1889
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "https://www.artic.edu/iiif/2/2d484387-2509-5e8e-2c43-22f9981972eb/full/843,/0/default.jpg",
+          "alt_text": "Starry Night Study"
+        }
+      ]
+    }
+  },
+  {
+    "id": 43,
+    "slug": "water-lilies-reflection",
+    "type": "artwork",
+    "title": { "rendered": "Water Lilies Reflection" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>A serene study of light on water from the late impressionist period.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:gallery {\"ids\":[1,2,3]} -->\n<figure class=\"wp-block-gallery\"><img src=\"https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg\" alt=\"Water Lilies detail 1\"/><img src=\"https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/600,/0/default.jpg\" alt=\"Water Lilies detail 2\"/></figure>\n<!-- /wp:gallery -->"
+    },
+    "meta": {
+      "artist": "Claude Monet",
+      "medium": "Oil on canvas",
+      "year": 1907
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg",
+          "alt_text": "Water Lilies Reflection"
+        }
+      ]
+    }
+  },
+  {
+    "id": 44,
+    "slug": "composition-viii",
+    "type": "artwork",
+    "title": { "rendered": "Composition VIII" },
+    "content": {
+      "rendered": "<!-- wp:heading {\"level\":3} -->\n<h3>Geometric abstraction</h3>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Bold geometric forms arranged in dynamic tension across the canvas plane.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:list {\"ordered\":true} -->\n<ol><li>Primary geometric planes</li><li>Intersecting diagonals</li><li>Contrasting color fields</li></ol>\n<!-- /wp:list -->"
+    },
+    "meta": {
+      "artist": "Wassily Kandinsky",
+      "medium": "Oil on canvas",
+      "year": 1923
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "https://www.artic.edu/iiif/2/98d3c331-a4ef-f4a5-53a4-b9632a0b727c/full/843,/0/default.jpg",
+          "alt_text": "Composition VIII"
+        }
+      ]
+    }
+  },
+  {
+    "id": 45,
+    "slug": "american-gothic",
+    "type": "artwork",
+    "title": { "rendered": "American Gothic" },
+    "content": {
+      "rendered": "<!-- wp:heading {\"level\":2} -->\n<h2>Regional modernism</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Grant Wood's iconic portrait of rural American stoicism, painted after a visit to Eldon, Iowa.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image -->\n<figure class=\"wp-block-image\"><img src=\"https://www.artic.edu/iiif/2/b272df73-a965-ac37-4172-be4e99483637/full/843,/0/default.jpg\" alt=\"American Gothic\"/></figure>\n<!-- /wp:image -->"
+    },
+    "meta": {
+      "artist": "Grant Wood",
+      "medium": "Oil on beaverboard",
+      "year": 1930
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "https://www.artic.edu/iiif/2/b272df73-a965-ac37-4172-be4e99483637/full/843,/0/default.jpg",
+          "alt_text": "American Gothic"
+        }
+      ]
+    }
+  },
+  {
+    "id": 46,
+    "slug": "nighthawks",
+    "type": "artwork",
+    "title": { "rendered": "Nighthawks" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>Edward Hopper's nocturnal diner scene captures urban loneliness beneath fluorescent light.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image -->\n<figure class=\"wp-block-image\"><img src=\"https://www.artic.edu/iiif/2/831a05de-d3f6-f4fa-a460-23008dd58dda/full/843,/0/default.jpg\" alt=\"Nighthawks\"/></figure>\n<!-- /wp:image -->"
+    },
+    "meta": {
+      "artist": "Edward Hopper",
+      "medium": "Oil on canvas",
+      "year": 1942
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "https://www.artic.edu/iiif/2/831a05de-d3f6-f4fa-a460-23008dd58dda/full/843,/0/default.jpg",
+          "alt_text": "Nighthawks"
+        }
+      ]
+    }
+  },
+  {
+    "id": 47,
+    "slug": "the-bedroom",
+    "type": "artwork",
+    "title": { "rendered": "The Bedroom" },
+    "content": {
+      "rendered": "<!-- wp:heading {\"level\":2} -->\n<h2>Arles, 1888</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Van Gogh painted his bedroom in the Yellow House three times; this version emphasizes calm through saturated color.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image -->\n<figure class=\"wp-block-image\"><img src=\"https://www.artic.edu/iiif/2/6644829f-f292-c5c4-a73c-0356a6fdbf0d/full/843,/0/default.jpg\" alt=\"The Bedroom\"/></figure>\n<!-- /wp:image -->"
+    },
+    "meta": {
+      "artist": "Vincent van Gogh",
+      "medium": "Oil on canvas",
+      "year": 1889
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "https://www.artic.edu/iiif/2/6644829f-f292-c5c4-a73c-0356a6fdbf0d/full/843,/0/default.jpg",
+          "alt_text": "The Bedroom"
+        }
+      ]
+    }
+  },
+  {
+    "id": 48,
+    "slug": "paris-street-rainy-day",
+    "type": "artwork",
+    "title": { "rendered": "Paris Street; Rainy Day" },
+    "content": {
+      "rendered": "<!-- wp:paragraph -->\n<p>Caillebotte's monumental view of the Place de Dublin captures Parisian bourgeois life under a soft grey sky.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:gallery -->\n<figure class=\"wp-block-gallery\"><img src=\"https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/843,/0/default.jpg\" alt=\"Paris Street full view\"/><img src=\"https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/600,/0/default.jpg\" alt=\"Paris Street detail\"/></figure>\n<!-- /wp:gallery -->"
+    },
+    "meta": {
+      "artist": "Gustave Caillebotte",
+      "medium": "Oil on canvas",
+      "year": 1877
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/843,/0/default.jpg",
+          "alt_text": "Paris Street; Rainy Day"
+        }
+      ]
+    }
+  },
+  {
+    "id": 49,
+    "slug": "the-childs-bath",
+    "type": "artwork",
+    "title": { "rendered": "The Child's Bath" },
+    "content": {
+      "rendered": "<!-- wp:heading {\"level\":2} -->\n<h2>Intimacy and form</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Mary Cassatt's tender domestic scene shows her mastery of composition influenced by Japanese printmaking.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image -->\n<figure class=\"wp-block-image\"><img src=\"https://www.artic.edu/iiif/2/3b885ae0-4d46-5fe4-d70a-00474827f02c/full/843,/0/default.jpg\" alt=\"The Child's Bath\"/></figure>\n<!-- /wp:image -->"
+    },
+    "meta": {
+      "artist": "Mary Cassatt",
+      "medium": "Oil on canvas",
+      "year": 1893
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "https://www.artic.edu/iiif/2/3b885ae0-4d46-5fe4-d70a-00474827f02c/full/843,/0/default.jpg",
+          "alt_text": "The Child's Bath"
+        }
+      ]
+    }
+  }
+]
