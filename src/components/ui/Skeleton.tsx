@@ -6,10 +6,7 @@ type SkeletonProps = HTMLAttributes<HTMLDivElement>;
 export function Skeleton({ className, ...props }: SkeletonProps) {
   return (
     <div
-      className={clsx(
-        "animate-pulse rounded-md bg-black/10 dark:bg-white/10",
-        className,
-      )}
+      className={clsx("animate-pulse rounded-md bg-black/10 dark:bg-white/10", className)}
       {...props}
     />
   );

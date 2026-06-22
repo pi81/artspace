@@ -1,10 +1,7 @@
 import clsx from "clsx";
 import type { ImgHTMLAttributes } from "react";
 
-type CmsImageProps = Omit<
-  ImgHTMLAttributes<HTMLImageElement>,
-  "src" | "alt" | "loading"
-> & {
+type CmsImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "alt" | "loading"> & {
   src: string;
   alt: string;
   width?: number;
@@ -34,10 +31,7 @@ export function CmsImage({
       loading={priority ? "eager" : "lazy"}
       decoding="async"
       fetchPriority={priority ? "high" : undefined}
-      className={clsx(
-        cover ? "size-full object-cover" : "h-auto max-w-full",
-        className,
-      )}
+      className={clsx(cover ? "size-full object-cover" : "h-auto max-w-full", className)}
       {...props}
     />
   );

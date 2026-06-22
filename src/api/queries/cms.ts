@@ -46,7 +46,5 @@ export const exhibitionsListQueryOptions = () => ({
 
 export const exhibitionDetailQueryOptions = (slug: string) => ({
   queryKey: EXHIBITIONS_QUERY_KEYS.detail(slug),
-  queryFn: withSignal((options) =>
-    getCmsProvider().getExhibition(slug, options),
-  ),
+  queryFn: withSignal((options) => getCmsProvider().getExhibition(slug, options)),
 });

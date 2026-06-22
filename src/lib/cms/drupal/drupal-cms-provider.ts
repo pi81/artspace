@@ -6,24 +6,14 @@ import exhibitionsFixture from "../fixtures/drupal/exhibitions.json";
 import { throwIfAborted } from "../signals";
 import type { Artist, Artwork, CMSProvider, Exhibition } from "../types";
 import { DrupalCollectionResponseSchema } from "./drupal-raw-schemas";
-import {
-  mapDrupalArtist,
-  mapDrupalArtwork,
-  mapDrupalExhibition,
-} from "./map-drupal-node";
+import { mapDrupalArtist, mapDrupalArtwork, mapDrupalExhibition } from "./map-drupal-node";
 
 const fixtureArtworks =
-  DrupalCollectionResponseSchema.parse(artworksFixture).data.map(
-    mapDrupalArtwork,
-  );
+  DrupalCollectionResponseSchema.parse(artworksFixture).data.map(mapDrupalArtwork);
 const fixtureArtists =
-  DrupalCollectionResponseSchema.parse(artistsFixture).data.map(
-    mapDrupalArtist,
-  );
+  DrupalCollectionResponseSchema.parse(artistsFixture).data.map(mapDrupalArtist);
 const fixtureExhibitions =
-  DrupalCollectionResponseSchema.parse(exhibitionsFixture).data.map(
-    mapDrupalExhibition,
-  );
+  DrupalCollectionResponseSchema.parse(exhibitionsFixture).data.map(mapDrupalExhibition);
 
 async function drupalFetch<T>(path: string, signal: AbortSignal): Promise<T> {
   const base = getDrupalJsonApiBase();
@@ -49,9 +39,7 @@ async function loadArtworks(signal: AbortSignal): Promise<Artwork[]> {
     return fixtureArtworks;
   }
 
-  const raw = DrupalCollectionResponseSchema.parse(
-    await drupalFetch("/node/artwork", signal),
-  );
+  const raw = DrupalCollectionResponseSchema.parse(await drupalFetch("/node/artwork", signal));
   return raw.data.map(mapDrupalArtwork);
 }
 
@@ -61,9 +49,7 @@ async function loadArtists(signal: AbortSignal): Promise<Artist[]> {
     return fixtureArtists;
   }
 
-  const raw = DrupalCollectionResponseSchema.parse(
-    await drupalFetch("/node/artist", signal),
-  );
+  const raw = DrupalCollectionResponseSchema.parse(await drupalFetch("/node/artist", signal));
   return raw.data.map(mapDrupalArtist);
 }
 
@@ -73,26 +59,17 @@ async function loadExhibitions(signal: AbortSignal): Promise<Exhibition[]> {
     return fixtureExhibitions;
   }
 
-  const raw = DrupalCollectionResponseSchema.parse(
-    await drupalFetch("/node/exhibition", signal),
-  );
+  const raw = DrupalCollectionResponseSchema.parse(await drupalFetch("/node/exhibition", signal));
   return raw.data.map(mapDrupalExhibition);
 }
 
-function findBySlug<T extends { slug: string }>(
-  items: T[],
-  slug: string,
-  resource: string,
-): T {
+function findBySlug<T extends { slug: string }>(items: T[], slug: string, resource: string): T {
   const found = items.find((item) => item.slug === slug);
   if (!found) throw new CmsNotFoundError(resource, slug);
   return found;
 }
 
-async function loadArtworkBySlug(
-  slug: string,
-  signal: AbortSignal,
-): Promise<Artwork> {
+async function loadArtworkBySlug(slug: string, signal: AbortSignal): Promise<Artwork> {
   if (!getDrupalJsonApiBase()) {
     throwIfAborted(signal);
     return findBySlug(fixtureArtworks, slug, "Artwork");
@@ -102,10 +79,7 @@ async function loadArtworkBySlug(
   return findBySlug(artworks, slug, "Artwork");
 }
 
-async function loadArtistBySlug(
-  slug: string,
-  signal: AbortSignal,
-): Promise<Artist> {
+async function loadArtistBySlug(slug: string, signal: AbortSignal): Promise<Artist> {
   if (!getDrupalJsonApiBase()) {
     throwIfAborted(signal);
     return findBySlug(fixtureArtists, slug, "Artist");
@@ -115,10 +89,7 @@ async function loadArtistBySlug(
   return findBySlug(artists, slug, "Artist");
 }
 
-async function loadExhibitionBySlug(
-  slug: string,
-  signal: AbortSignal,
-): Promise<Exhibition> {
+async function loadExhibitionBySlug(slug: string, signal: AbortSignal): Promise<Exhibition> {
   if (!getDrupalJsonApiBase()) {
     throwIfAborted(signal);
     return findBySlug(fixtureExhibitions, slug, "Exhibition");

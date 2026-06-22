@@ -11,7 +11,5 @@ export function GutenbergContent({ html }: GutenbergContentProps) {
 
   const parser = getGutenbergParser();
 
-  return (
-    <div className="gutenberg-content space-y-4">{parser.render(html)}</div>
-  );
+  return <div className="gutenberg-content space-y-4">{parser.render(html)}</div>;
 }

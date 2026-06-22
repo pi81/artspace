@@ -10,10 +10,7 @@ function isAbsoluteUrl(url: string): boolean {
 }
 
 /** Resolves relative CMS media paths to absolute URLs. UI never guesses hosts. */
-export function resolveCmsUrl(
-  url: string,
-  cmsType: CmsType = "wordpress",
-): string {
+export function resolveCmsUrl(url: string, cmsType: CmsType = "wordpress"): string {
   if (!url || isAbsoluteUrl(url)) return url;
 
   const base = CMS_BASE_BY_TYPE[cmsType];

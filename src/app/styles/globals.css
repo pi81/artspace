@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./typography.css";
+@import "./interactions.css";
 
 @theme {
   --font-sans: ui-sans-serif, system-ui, sans-serif;

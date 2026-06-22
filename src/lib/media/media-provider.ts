@@ -20,31 +20,20 @@ function resizeIiifUrl(url: string, width?: number): string {
 
   if (currentSize === targetSize) return url;
 
-  return buildAicIiifUrl(
-    "https://www.artic.edu/iiif/2",
-    imageId ?? "",
-    targetSize,
-  );
+  return buildAicIiifUrl("https://www.artic.edu/iiif/2", imageId ?? "", targetSize);
 }
 
-async function resolveFromUrl(
-  input: ResolveImageUrlInput,
-): Promise<string | null> {
+async function resolveFromUrl(input: ResolveImageUrlInput): Promise<string | null> {
   if (!input.url) return null;
 
   const absoluteUrl = resolveCmsUrl(input.url);
   return resizeIiifUrl(absoluteUrl, input.width);
 }
 
-async function resolveFromAic(
-  input: ResolveImageUrlInput,
-): Promise<string | null> {
+async function resolveFromAic(input: ResolveImageUrlInput): Promise<string | null> {
   if (input.aicArtworkId === undefined) return null;
 
-  const { imageId, iiifBase } = await fetchAicArtworkImage(
-    input.aicArtworkId,
-    input.signal,
-  );
+  const { imageId, iiifBase } = await fetchAicArtworkImage(input.aicArtworkId, input.signal);
   return buildAicIiifUrl(iiifBase, imageId, resolveIiifSize(input.width));
 }
 

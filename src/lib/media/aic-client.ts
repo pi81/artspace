@@ -32,18 +32,14 @@ export async function fetchAicArtworkImage(
   });
 
   if (!response.ok) {
-    throw new Error(
-      `AIC request failed for artwork ${aicArtworkId}: ${response.status}`,
-    );
+    throw new Error(`AIC request failed for artwork ${aicArtworkId}: ${response.status}`);
   }
 
   const payload = AicArtworkResponseSchema.parse(await response.json());
   const imageId = payload.data.image_id;
 
   if (!imageId) {
-    throw new Error(
-      `Artwork ${aicArtworkId} (${payload.data.title}) has no image_id`,
-    );
+    throw new Error(`Artwork ${aicArtworkId} (${payload.data.title}) has no image_id`);
   }
 
   return {

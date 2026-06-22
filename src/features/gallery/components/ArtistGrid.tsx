@@ -11,9 +11,7 @@ export function ArtistGrid() {
   return (
     <div>
       <h1 className="text-3xl font-semibold tracking-tight">{t("Artists")}</h1>
-      <p className="text-muted mt-2">
-        {t("Meet the artists in our collection.")}
-      </p>
+      <p className="mt-2 text-muted">{t("Meet the artists in our collection.")}</p>
       <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {artists.map((artist) => (
           <li key={artist.id}>
@@ -21,7 +19,7 @@ export function ArtistGrid() {
               <Card className="transition hover:shadow-md">
                 <h2 className="font-medium">{artist.name}</h2>
                 {(artist.birthYear ?? artist.deathYear) ? (
-                  <p className="text-muted mt-1 text-sm">
+                  <p className="mt-1 text-sm text-muted">
                     {artist.birthYear ?? "?"} — {artist.deathYear ?? "?"}
                   </p>
                 ) : null}

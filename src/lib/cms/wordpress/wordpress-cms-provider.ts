@@ -8,12 +8,9 @@ import type { Artist, Artwork, CMSProvider, Exhibition } from "../types";
 import { mapWpArtist, mapWpArtwork, mapWpExhibition } from "./map-wp-post";
 import { WpPostsResponseSchema } from "./wp-raw-schemas";
 
-const fixtureArtworks =
-  WpPostsResponseSchema.parse(artworksFixture).map(mapWpArtwork);
-const fixtureArtists =
-  WpPostsResponseSchema.parse(artistsFixture).map(mapWpArtist);
-const fixtureExhibitions =
-  WpPostsResponseSchema.parse(exhibitionsFixture).map(mapWpExhibition);
+const fixtureArtworks = WpPostsResponseSchema.parse(artworksFixture).map(mapWpArtwork);
+const fixtureArtists = WpPostsResponseSchema.parse(artistsFixture).map(mapWpArtist);
+const fixtureExhibitions = WpPostsResponseSchema.parse(exhibitionsFixture).map(mapWpExhibition);
 
 async function wpFetch<T>(path: string, signal: AbortSignal): Promise<T> {
   const base = getWpRestBase();
@@ -65,10 +62,7 @@ async function loadExhibitions(signal: AbortSignal): Promise<Exhibition[]> {
   return raw.map(mapWpExhibition);
 }
 
-async function loadArtworkBySlug(
-  slug: string,
-  signal: AbortSignal,
-): Promise<Artwork> {
+async function loadArtworkBySlug(slug: string, signal: AbortSignal): Promise<Artwork> {
   if (!getWpRestBase()) {
     throwIfAborted(signal);
     const found = fixtureArtworks.find((artwork) => artwork.slug === slug);
@@ -84,10 +78,7 @@ async function loadArtworkBySlug(
   return mapWpArtwork(post);
 }
 
-async function loadArtistBySlug(
-  slug: string,
-  signal: AbortSignal,
-): Promise<Artist> {
+async function loadArtistBySlug(slug: string, signal: AbortSignal): Promise<Artist> {
   if (!getWpRestBase()) {
     throwIfAborted(signal);
     const found = fixtureArtists.find((artist) => artist.slug === slug);
@@ -103,15 +94,10 @@ async function loadArtistBySlug(
   return mapWpArtist(post);
 }
 
-async function loadExhibitionBySlug(
-  slug: string,
-  signal: AbortSignal,
-): Promise<Exhibition> {
+async function loadExhibitionBySlug(slug: string, signal: AbortSignal): Promise<Exhibition> {
   if (!getWpRestBase()) {
     throwIfAborted(signal);
-    const found = fixtureExhibitions.find(
-      (exhibition) => exhibition.slug === slug,
-    );
+    const found = fixtureExhibitions.find((exhibition) => exhibition.slug === slug);
     if (!found) throw new CmsNotFoundError("Exhibition", slug);
     return found;
   }

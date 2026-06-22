@@ -1,10 +1,5 @@
 import type { z } from "zod";
-import {
-  ArtistSchema,
-  ArtworkSchema,
-  ExhibitionSchema,
-  ImageSchema,
-} from "./schemas";
+import { ArtistSchema, ArtworkSchema, ExhibitionSchema, ImageSchema } from "./schemas";
 
 export type Image = z.infer<typeof ImageSchema>;
 export type Artist = z.infer<typeof ArtistSchema>;

@@ -2,8 +2,7 @@ import { createElement, type ReactElement } from "react";
 
 const ROOT_ELEMENT_PATTERN = /^<([a-z][a-z0-9]*)\b([^>]*)\>([\s\S]*)<\/\1>$/i;
 
-const ATTR_PATTERN =
-  /([a-zA-Z_:][-a-zA-Z0-9_:.]*)\s*=\s*("([^"]*)"|'([^']*)')/g;
+const ATTR_PATTERN = /([a-zA-Z_:][-a-zA-Z0-9_:.]*)\s*=\s*("([^"]*)"|'([^']*)')/g;
 
 function parseAttributes(attrsHtml: string): Record<string, string> {
   const attributes: Record<string, string> = {};
@@ -19,10 +18,7 @@ function parseAttributes(attrsHtml: string): Record<string, string> {
   return attributes;
 }
 
-function mergeClassNames(
-  existing: string | undefined,
-  classesToAdd: string[],
-): string {
+function mergeClassNames(existing: string | undefined, classesToAdd: string[]): string {
   const merged = (existing ?? "").split(/\s+/).filter(Boolean);
 
   for (const className of classesToAdd) {
@@ -33,10 +29,7 @@ function mergeClassNames(
 }
 
 /** Inject wp-block classes on the root element; preserve other attrs and inner HTML. */
-export function applyWpBlockClasses(
-  innerHtml: string,
-  blockClass: string,
-): string {
+export function applyWpBlockClasses(innerHtml: string, blockClass: string): string {
   const trimmed = innerHtml.trim();
   if (!trimmed) return trimmed;
 
@@ -44,10 +37,7 @@ export function applyWpBlockClasses(
     /^<([a-z][a-z0-9]*)\b([^>]*)>/i,
     (_match, tag: string, rawAttrs: string) => {
       const attributes = parseAttributes(rawAttrs);
-      const className = mergeClassNames(attributes.class, [
-        "wp-block",
-        blockClass,
-      ]);
+      const className = mergeClassNames(attributes.class, ["wp-block", blockClass]);
       const attrsWithoutClass = Object.entries(attributes)
         .filter(([key]) => key !== "class")
         .map(([key, value]) => ` ${key}="${value}"`)
@@ -87,10 +77,7 @@ function attributesToReactProps(
   return props;
 }
 
-export function renderWpBlockHtml(
-  innerHtml: string,
-  blockClass: string,
-): ReactElement {
+export function renderWpBlockHtml(innerHtml: string, blockClass: string): ReactElement {
   const parsed = parseRootElement(innerHtml);
 
   if (!parsed) {
@@ -101,10 +88,7 @@ export function renderWpBlockHtml(
     });
   }
 
-  const className = mergeClassNames(parsed.attributes.class, [
-    "wp-block",
-    blockClass,
-  ]);
+  const className = mergeClassNames(parsed.attributes.class, ["wp-block", blockClass]);
 
   return createElement(parsed.tag, {
     ...attributesToReactProps(parsed.attributes, className),

@@ -1,7 +1,4 @@
-import type {
-  FrontkomBlock,
-  FrontkomBlockHandler,
-} from "@frontkom/block-react-parser";
+import type { FrontkomBlock, FrontkomBlockHandler } from "@frontkom/block-react-parser";
 import type { BlockHandler, BlockHandlerProps } from "../types/block-handler";
 
 function mapInnerBlockToProps(block: FrontkomBlock): BlockHandlerProps {
