@@ -2,7 +2,7 @@
 
 import { backLinkClass } from "@/components/ui/interactive";
 import { useArtist } from "@/hooks/useCmsQueries";
-import { GutenbergContent } from "@/lib/gutenberg-content";
+import { GutenbergContent } from "@/lib/cms/content/gutenberg";
 import { t } from "@/lib/i18n/t";
 import Link from "next/link";
 

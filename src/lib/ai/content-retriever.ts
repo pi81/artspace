@@ -1,5 +1,5 @@
 import { getCmsProvider } from "@/api/get-cms";
-import { extractPlainText } from "@/lib/cms/html/extract-plain-text";
+import { extractPlainText } from "@/lib/cms/utils/extract-plain-text";
 
 const MAX_ARTWORKS = 60;
 

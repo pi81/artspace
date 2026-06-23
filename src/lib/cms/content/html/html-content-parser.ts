@@ -1,6 +1,5 @@
-import type { ContentParser } from "@/lib/plain-content/types";
-import { createElement } from "react";
-import { HtmlBody } from "./HtmlBody";
+import type { ContentParser } from "@/lib/cms/content/types";
+import { htmlToReact } from "@/lib/cms/utils/html-to-react";
 import { sanitizeHtml } from "./sanitize-html";
 
 export const htmlContentParser: ContentParser = {
@@ -8,7 +7,7 @@ export const htmlContentParser: ContentParser = {
     const sanitized = sanitizeHtml(body);
     if (!sanitized) return null;
 
-    return createElement(HtmlBody, { html: sanitized });
+    return htmlToReact(sanitized);
   },
 };
 

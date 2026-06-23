@@ -1,4 +1,4 @@
-import type { ContentParser } from "@/lib/plain-content/types";
+import type { ContentParser } from "@/lib/cms/content/types";
 import { createElement } from "react";
 import { GutenbergBody } from "./GutenbergBody";
 

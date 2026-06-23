@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { useExhibitions } from "@/hooks/useCmsQueries";
-import { extractPlainText } from "@/lib/cms/html/extract-plain-text";
+import { extractPlainText } from "@/lib/cms/utils/extract-plain-text";
 import { t } from "@/lib/i18n/t";
 import Link from "next/link";
 

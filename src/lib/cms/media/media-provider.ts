@@ -1,4 +1,4 @@
-import { resolveCmsUrl } from "@/lib/cms/media/resolve-cms-url";
+import { resolveCmsUrl } from "@/lib/cms/utils/resolve-cms-url";
 import { buildAicIiifUrl, fetchAicArtworkImage } from "./aic-client";
 import type { MediaProvider, ResolveImageUrlInput } from "./types";
 

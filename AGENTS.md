@@ -87,6 +87,25 @@ Fix all TypeScript and ESLint issues you introduce. Do not disable rules without
 - Do not cast with `as SomeType` to silence errors — fix the type at the source.
 - Do not create duplicate type definitions for the same entity.
 - Do not add a `types/` file (or `types/` folder entry) for a type pair used by a single module.
+- Do not coalesce to `""` right before string processing (`split`, `trim`, `replace`, regex) when a guard or branch is clearer — avoid pointless work on an empty string.
+
+```ts
+// ❌ BAD — split/trim/replace on a coalesced empty string
+const tokens = (value ?? "").split(/\s+/).filter(Boolean);
+const text = stripHtml(input ?? "");
+
+// ✅ GOOD — guard or branch; let helpers accept undefined
+const tokens = value ? value.split(/\s+/).filter(Boolean) : [];
+
+function stripHtml(html: string | undefined): string {
+  if (!html) return "";
+  return html.replace(/<[^>]*>/g, "").trim();
+}
+
+const text = stripHtml(input);
+```
+
+`?? ""` is still fine when the goal is a **default field value** (e.g. mapper → `bodyHtml: node.body?.processed ?? ""`) with no immediate string parsing.
 
 ---
 
