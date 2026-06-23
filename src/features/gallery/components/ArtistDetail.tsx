@@ -2,7 +2,7 @@
 
 import { backLinkClass } from "@/components/ui/interactive";
 import { useArtist } from "@/hooks/useCmsQueries";
-import { GutenbergContent } from "@/lib/gutenberg/content/GutenbergContent";
+import { GutenbergContent } from "@/lib/gutenberg-content";
 import { t } from "@/lib/i18n/t";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ export function ArtistDetail({ slug }: ArtistDetailProps) {
         ) : null}
       </header>
       <div className="mt-8">
-        <GutenbergContent html={artist.bodyHtml} />
+        <GutenbergContent body={artist.bodyHtml} />
       </div>
     </article>
   );

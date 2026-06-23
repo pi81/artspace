@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/Badge";
 import { backLinkClass } from "@/components/ui/interactive";
 import { useExhibition } from "@/hooks/useCmsQueries";
-import { GutenbergContent } from "@/lib/gutenberg/content/GutenbergContent";
+import { GutenbergContent } from "@/lib/gutenberg-content";
 import { t } from "@/lib/i18n/t";
 import Link from "next/link";
 
@@ -35,7 +35,7 @@ export function ExhibitionDetail({ slug }: ExhibitionDetailProps) {
         </div>
       </header>
       <div className="mt-8">
-        <GutenbergContent html={exhibition.bodyHtml} />
+        <GutenbergContent body={exhibition.bodyHtml} />
       </div>
     </article>
   );

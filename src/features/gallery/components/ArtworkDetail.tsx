@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/Badge";
 import { CmsImage } from "@/components/ui/CmsImage";
 import { backLinkClass } from "@/components/ui/interactive";
 import { useArtwork } from "@/hooks/useCmsQueries";
-import { GutenbergContent } from "@/lib/gutenberg/content/GutenbergContent";
+import { GutenbergContent } from "@/lib/gutenberg-content";
 import { t } from "@/lib/i18n/t";
 import Link from "next/link";
 
@@ -42,7 +42,7 @@ export function ArtworkDetail({ slug }: ArtworkDetailProps) {
         </figure>
       ) : null}
       <div className="mt-8">
-        <GutenbergContent html={artwork.bodyHtml} />
+        <GutenbergContent body={artwork.bodyHtml} />
       </div>
     </article>
   );
