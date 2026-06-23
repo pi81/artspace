@@ -265,15 +265,15 @@ export const updateItemMutation = {
 
 ### State placement
 
-| Data kind                              | Where                                          |
-| -------------------------------------- | ---------------------------------------------- |
-| Remote API data                        | TanStack Query                                 |
-| Auth session (`user`, `token`)         | Auth context + `src/api/auth.ts`               |
-| Shared UI chrome (theme, sidebar)      | UI context / provider — only when cross-route  |
-| Form fields                            | Form library or local state for simple forms   |
-| Screen filters (search, sort, page)    | `useReducer` in a feature hook                 |
-| Ephemeral UI (open drawer, active tab) | Local `useState`                               |
-| Local-only records (no backend yet)    | Feature module + storage adapter + Query       |
+| Data kind                              | Where                                         |
+| -------------------------------------- | --------------------------------------------- |
+| Remote API data                        | TanStack Query                                |
+| Auth session (`user`, `token`)         | Auth context + `src/api/auth.ts`              |
+| Shared UI chrome (theme, sidebar)      | UI context / provider — only when cross-route |
+| Form fields                            | Form library or local state for simple forms  |
+| Screen filters (search, sort, page)    | `useReducer` in a feature hook                |
+| Ephemeral UI (open drawer, active tab) | Local `useState`                              |
+| Local-only records (no backend yet)    | Feature module + storage adapter + Query      |
 
 **Never** store remote API responses in Context.
 
@@ -309,6 +309,54 @@ Prefer **Tailwind v4** CSS-first setup (`@import "tailwindcss"`, `@theme`, Vite 
 ```
 
 Global styles live in the project's CSS entry (e.g. `src/app/app.css`).
+
+### Modern CSS structure
+
+Use **native CSS** features supported by the project's build (Tailwind v4 + PostCSS). Do not fall back to flat, pre-nesting patterns when nesting and layers are available.
+
+**File layout**
+
+- One CSS **entry** imports Tailwind and focused partials (`typography.css`, `components.css`, etc.).
+- Keep partials small and named by concern — not one monolithic stylesheet.
+
+**Nesting**
+
+- Nest pseudo-classes and child context with **`&`** inside the parent rule — do not repeat the full selector.
+
+```css
+/* ❌ BAD — duplicated selector, flat structure */
+.card {
+  padding: 1rem;
+}
+.card:hover {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+.card:focus-visible {
+  outline: 2px solid var(--color-accent);
+}
+
+/* ✅ GOOD — nested, readable */
+.card {
+  padding: 1rem;
+
+  &:hover {
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+  }
+}
+```
+
+- Every `{` must have a matching `}` — when nesting, close inner rules before closing the parent.
+- Do not use Sass/Less-only syntax (`@extend`, variables with `$`, mixins) unless the project already ships that preprocessor.
+
+**Layers and tokens**
+
+- Put reusable design tokens in **`@theme`**; reference them via standard Tailwind utilities or `var(--…)` in CSS.
+- Wrap custom component classes in **`@layer components`** (or the layer the project already uses) so utilities can override when needed.
+- Prefer Tailwind utilities in JSX for one-off layout; use CSS partials for **global patterns** (typography scale, skip links, prose defaults) that belong in stylesheets.
 
 ### Conventions
 
