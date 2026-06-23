@@ -15,12 +15,10 @@ export function renderWpBlockHtml(innerHtml: string, blockClass: string): ReactE
   target.classList.add("wp-block");
   target.classList.add(blockClass);
 
-  console.log("Log 1", document);
-
-  const react = htmlToReact(document.toString());
-  if (!react) {
+  const reactElement = htmlToReact(document.toString());
+  if (!reactElement) {
     throw new Error(`renderWpBlockHtml: failed to convert HTML for block "${blockClass}"`);
   }
 
-  return react as ReactElement;
+  return reactElement as ReactElement;
 }
