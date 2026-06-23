@@ -1,8 +1,9 @@
-import { resolveCmsUrl } from "../media/resolve-cms-url";
 import type { Artist, Artwork, Exhibition } from "../types";
+import { resolveCmsUrl } from "../utils/resolve-cms-url";
 import type { WpPostRaw } from "./wp-raw-schemas";
 
-function stripHtml(html: string): string {
+function stripHtml(html: string | undefined): string {
+  if (!html) return "";
   return html.replace(/<[^>]*>/g, "").trim();
 }
 
@@ -50,7 +51,7 @@ export function mapWpExhibition(post: WpPostRaw): Exhibition {
     id: String(post.id),
     slug: post.slug,
     title: stripHtml(post.title.rendered),
-    summary: post.meta?.summary ?? stripHtml(post.excerpt?.rendered ?? ""),
+    summary: post.meta?.summary ?? stripHtml(post.excerpt?.rendered),
     startDate: post.meta?.start_date,
     endDate: post.meta?.end_date,
     artworkIds: post.meta?.artwork_ids?.map(String) ?? [],

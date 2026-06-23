@@ -18,18 +18,12 @@ function QueryErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
     notFound();
   }
 
-  const message =
-    error instanceof Error ? error.message : t("Something went wrong");
+  const message = error instanceof Error ? error.message : t("Something went wrong");
 
   return (
-    <div className="border-muted rounded-lg border p-6 text-center">
-      <p className="text-muted text-sm">{message}</p>
-      <Button
-        type="button"
-        variant="secondary"
-        className="mt-4"
-        onClick={resetErrorBoundary}
-      >
+    <div className="rounded-lg border border-muted p-6 text-center">
+      <p className="text-sm text-muted">{message}</p>
+      <Button type="button" variant="secondary" className="mt-4" onClick={resetErrorBoundary}>
         {t("Try again")}
       </Button>
     </div>

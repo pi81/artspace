@@ -1,7 +1,8 @@
 "use client";
 
+import { backLinkClass } from "@/components/ui/interactive";
 import { useArtist } from "@/hooks/useCmsQueries";
-import { GutenbergContent } from "@/lib/gutenberg/content/GutenbergContent";
+import { GutenbergContent } from "@/lib/cms/content/gutenberg";
 import { t } from "@/lib/i18n/t";
 import Link from "next/link";
 
@@ -14,22 +15,19 @@ export function ArtistDetail({ slug }: ArtistDetailProps) {
 
   return (
     <article>
-      <Link
-        href="/artists"
-        className="text-muted text-sm hover:text-(--foreground)"
-      >
+      <Link href="/artists" className={backLinkClass}>
         ← {t("Back to artists")}
       </Link>
       <header className="mt-4">
         <h1 className="text-3xl font-semibold tracking-tight">{artist.name}</h1>
         {(artist.birthYear ?? artist.deathYear) ? (
-          <p className="text-muted mt-2">
+          <p className="mt-2 text-muted">
             {artist.birthYear ?? "?"} — {artist.deathYear ?? "?"}
           </p>
         ) : null}
       </header>
       <div className="mt-8">
-        <GutenbergContent html={artist.bodyHtml} />
+        <GutenbergContent body={artist.bodyHtml} />
       </div>
     </article>
   );

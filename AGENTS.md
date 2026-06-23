@@ -36,7 +36,7 @@ When API behavior, hook signatures, or config format are unclear, prefer current
 
 ## Scope
 
-These instructions cover **React, TypeScript, TanStack Query, Tailwind CSS, ESLint, Prettier, and project structure**. Routing and navigation are out of scope — do not add routing-specific guidance unless explicitly requested.
+These instructions cover **React, TypeScript, TanStack Query, Tailwind CSS, ESLint, Prettier, and project structure**. Follow the **framework's own routing conventions** (e.g. Next.js App Router, React Router) — do not invent a parallel routing layer.
 
 ---
 
@@ -71,15 +71,41 @@ Fix all TypeScript and ESLint issues you introduce. Do not disable rules without
 
 ### Domain types
 
-- Place shared API/domain models in `src/types/` (e.g. `*.model.ts` for entities/responses).
+- Place **shared** API/domain models in `src/types/` (e.g. `*.model.ts` for entities/responses).
 - Keep form-specific types separate (`forms.ts` or colocated with the feature).
 - Align types with the actual API contract — do not invent fields.
+
+### Type placement
+
+- **Colocate** types used in **one file only** — define them in that file; do not split them into a separate `types/` module.
+- **Extract** types imported by **two or more modules** into a shared file (e.g. `src/types/`, or a feature-level module both consumers import).
+- Do not `export` types that have no consumers outside their file.
 
 ### Anti-patterns
 
 - Do not use `@ts-ignore` or `@ts-expect-error` without a comment explaining why.
 - Do not cast with `as SomeType` to silence errors — fix the type at the source.
 - Do not create duplicate type definitions for the same entity.
+- Do not add a `types/` file (or `types/` folder entry) for a type pair used by a single module.
+- Do not coalesce to `""` right before string processing (`split`, `trim`, `replace`, regex) when a guard or branch is clearer — avoid pointless work on an empty string.
+
+```ts
+// ❌ BAD — split/trim/replace on a coalesced empty string
+const tokens = (value ?? "").split(/\s+/).filter(Boolean);
+const text = stripHtml(input ?? "");
+
+// ✅ GOOD — guard or branch; let helpers accept undefined
+const tokens = value ? value.split(/\s+/).filter(Boolean) : [];
+
+function stripHtml(html: string | undefined): string {
+  if (!html) return "";
+  return html.replace(/<[^>]*>/g, "").trim();
+}
+
+const text = stripHtml(input);
+```
+
+`?? ""` is still fine when the goal is a **default field value** (e.g. mapper → `bodyHtml: node.body?.processed ?? ""`) with no immediate string parsing.
 
 ---
 
@@ -130,12 +156,11 @@ Extend the existing layout. **Do not introduce a parallel architecture.**
 src/
   api/
     http.ts              # Shared fetch layer — no React, no UI
-    auth.ts              # Token/session helpers
+    auth.ts              # Token/session helpers (when auth exists)
     queries/             # Query key constants + query option factories
     mutations/           # Mutation option factories
   providers/
     AppProvider.tsx      # QueryClientProvider + global providers
-    UIProvider.tsx       # Lightweight UI context (toast, sidebar, etc.)
   hooks/                 # Thin wrappers around useQuery / useSuspenseQuery
   features/
     <domain>/
@@ -148,12 +173,10 @@ src/
     errors/              # Shared error views / fallbacks
   types/                 # Shared TypeScript models
   utils/                 # Cross-cutting pure helpers
-  mocks/                 # Static mock data for development (optional)
-  app/
-    root.tsx             # Provider tree composition
-    app.css              # Tailwind entry + global theme
-    routes/              # Thin route files — compose feature components only
+  app/                   # Framework app shell (Next.js app/, Vite entry, etc.)
 ```
+
+Route and page files stay **thin** — compose feature components only. Global CSS / Tailwind entry lives in the project's conventional location for that framework.
 
 ### Layer responsibilities
 
@@ -244,7 +267,7 @@ export const updateItemMutation = {
 - Use `placeholderData: keepPreviousData` for pagination.
 - After mutations, **`invalidateQueries` only related keys** — not the entire cache.
 - Prefetch on hover/focus for detail views when appropriate.
-- Combine `useQueryErrorResetBoundary` with `react-error-boundary` for recoverable query errors.
+- Combine `useQueryErrorResetBoundary` with an error boundary for recoverable query errors when the repo uses one.
 
 ---
 
@@ -261,15 +284,15 @@ export const updateItemMutation = {
 
 ### State placement
 
-| Data kind                              | Where                                          |
-| -------------------------------------- | ---------------------------------------------- |
-| Remote API data                        | TanStack Query                                 |
-| Auth session (`user`, `token`)         | Auth context + `src/api/auth.ts`               |
-| Global UI (toast, mobile sidebar)      | UI context / provider                          |
-| Form fields                            | `react-hook-form`                              |
-| Screen filters (search, sort, page)    | `useReducer` in a feature hook                 |
-| Ephemeral UI (open drawer, active tab) | Local `useState`                               |
-| Domain records without backend         | Feature API + storage adapter + Query/Mutation |
+| Data kind                              | Where                                         |
+| -------------------------------------- | --------------------------------------------- |
+| Remote API data                        | TanStack Query                                |
+| Auth session (`user`, `token`)         | Auth context + `src/api/auth.ts`              |
+| Shared UI chrome (theme, sidebar)      | UI context / provider — only when cross-route |
+| Form fields                            | Form library or local state for simple forms  |
+| Screen filters (search, sort, page)    | `useReducer` in a feature hook                |
+| Ephemeral UI (open drawer, active tab) | Local `useState`                              |
+| Local-only records (no backend yet)    | Feature module + storage adapter + Query      |
 
 **Never** store remote API responses in Context.
 
@@ -283,10 +306,10 @@ export const updateItemMutation = {
 
 ### Forms
 
-- Use **`react-hook-form`** for non-trivial forms.
+- Use a form library (e.g. **`react-hook-form`**) for non-trivial forms; simple forms can use local state.
 - Define typed form values.
 - Reset form when async `defaultValues` arrive.
-- Submit via `useMutation`; surface feedback through UI context or local state.
+- Submit via `useMutation`; surface feedback with local state or existing UI patterns in the repo.
 
 ---
 
@@ -305,6 +328,54 @@ Prefer **Tailwind v4** CSS-first setup (`@import "tailwindcss"`, `@theme`, Vite 
 ```
 
 Global styles live in the project's CSS entry (e.g. `src/app/app.css`).
+
+### Modern CSS structure
+
+Use **native CSS** features supported by the project's build (Tailwind v4 + PostCSS). Do not fall back to flat, pre-nesting patterns when nesting and layers are available.
+
+**File layout**
+
+- One CSS **entry** imports Tailwind and focused partials (`typography.css`, `components.css`, etc.).
+- Keep partials small and named by concern — not one monolithic stylesheet.
+
+**Nesting**
+
+- Nest pseudo-classes and child context with **`&`** inside the parent rule — do not repeat the full selector.
+
+```css
+/* ❌ BAD — duplicated selector, flat structure */
+.card {
+  padding: 1rem;
+}
+.card:hover {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+.card:focus-visible {
+  outline: 2px solid var(--color-accent);
+}
+
+/* ✅ GOOD — nested, readable */
+.card {
+  padding: 1rem;
+
+  &:hover {
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+  }
+}
+```
+
+- Every `{` must have a matching `}` — when nesting, close inner rules before closing the parent.
+- Do not use Sass/Less-only syntax (`@extend`, variables with `$`, mixins) unless the project already ships that preprocessor.
+
+**Layers and tokens**
+
+- Put reusable design tokens in **`@theme`**; reference them via standard Tailwind utilities or `var(--…)` in CSS.
+- Wrap custom component classes in **`@layer components`** (or the layer the project already uses) so utilities can override when needed.
+- Prefer Tailwind utilities in JSX for one-off layout; use CSS partials for **global patterns** (typography scale, skip links, prose defaults) that belong in stylesheets.
 
 ### Conventions
 
@@ -363,7 +434,7 @@ If a `t()` helper exists, route user-visible strings through it to keep copy ext
 4. **Comments in English** — only for non-obvious business or technical rationale.
 5. **No secrets in code** — never commit tokens, credentials, or private keys.
 6. **English for code** — identifiers, comments, commit messages, and UI strings.
-7. **No speculative dead code** — do not add unused helpers, exports, or “just in case” placeholders that are not wired into the app today and are not part of an **agreed public API or explicit task scope**. If a stable seam is required, implement the **final public API** with the stub appropriate for the current phase — not extra escape hatches (dummy signals, noop factories, unused config) “for tests/scripts someday.” Remove or avoid misleading comments that describe code paths that do not exist yet.
+7. **No speculative dead code** — do not add unused helpers, exports, dependencies, or “just in case” placeholders that are not wired into the app today and are not part of an **agreed public API or explicit task scope**. If a boundary interface is required, implement its **real public API** with the minimal working implementation — not extra escape hatches (unused packages, noop factories, unused config) “for later.” Remove or avoid misleading comments that describe code paths that do not exist yet.
 8. **Respect manual edits** — do not revert files to an older version from conversation or agent memory when the user has changed them by hand. Read the current file on disk and build on that. **Exception:** revert or fix only when the manual change is unsafe (secrets, injection, broken auth) or would clearly break the app (syntax/type errors, broken build, data loss) — explain why before overwriting user intent.
 
 ---
@@ -376,11 +447,11 @@ If a `t()` helper exists, route user-visible strings through it to keep copy ext
 - Using outdated TanStack Query APIs from older major versions.
 - Mixing Tailwind v3 and v4 configuration patterns.
 - Importing with long relative paths when a path alias is configured.
-- Large forms managed with many `useState` calls instead of `react-hook-form`.
+- Large forms managed with many `useState` calls instead of a form library.
 - Wrapping everything in `useTransition` / `useDeferredValue` without a performance reason.
 - Adding tests, docs, or config files the user did not ask for.
 - Leaving unused exports, placeholder utilities, or comments for hypothetical callers when nothing in the repo uses them yet.
-- Confusing **planned seams** (stub behind a fixed, agreed API) with **speculative extras** (dead code that might help later).
+- Confusing **intentional boundaries** (stub behind a fixed, agreed API) with **speculative extras** (dead code that might help later).
 - Adding repo-specific rules, domain context, or private guides to `AGENTS.md` — keep this file portable across starter-kit projects.
 - Overwriting user-edited code with stale content from a prior agent turn — always re-read the file; only override manual changes for security or clear breakage (see principle 8).
 
@@ -398,4 +469,4 @@ If a `t()` helper exists, route user-visible strings through it to keep copy ext
 - [ ] `npm run typecheck` passes
 - [ ] `npm run lint` passes
 - [ ] Only requested files were changed
-- [ ] No new unused “just in case” code; planned seams match agreed APIs — no dead placeholders or misleading comments
+- [ ] No new unused “just in case” code or dependencies — no dead placeholders or misleading comments

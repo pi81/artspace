@@ -1,5 +1,5 @@
-import { resolveCmsUrl } from "../media/resolve-cms-url";
 import type { Artist, Artwork, Exhibition } from "../types";
+import { resolveCmsUrl } from "../utils/resolve-cms-url";
 import { slugFromAlias } from "../wordpress/map-wp-post";
 import type { DrupalNodeResource } from "./drupal-raw-schemas";
 

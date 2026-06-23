@@ -1,5 +1,5 @@
 import { getCmsProvider } from "@/api/get-cms";
-import { extractPlainText } from "@/lib/cms/html/extract-plain-text";
+import { extractPlainText } from "@/lib/cms/utils/extract-plain-text";
 
 const MAX_ARTWORKS = 60;
 
@@ -17,9 +17,7 @@ export const cmsContentRetriever: ContentRetriever = {
     ]);
 
     const artworkLines = artworks.slice(0, MAX_ARTWORKS).map((a) => {
-      const excerpt = a.bodyHtml
-        ? extractPlainText(a.bodyHtml).slice(0, 200)
-        : "";
+      const excerpt = a.bodyHtml ? extractPlainText(a.bodyHtml).slice(0, 200) : "";
       return (
         `- "${a.title}" by ${a.artist}${a.year ? ` (${a.year})` : ""}` +
         `${a.medium ? `, ${a.medium}` : ""}` +
@@ -28,18 +26,10 @@ export const cmsContentRetriever: ContentRetriever = {
     });
 
     const exhibitionLines = exhibitions.map((e) => {
-      const body = e.bodyHtml
-        ? extractPlainText(e.bodyHtml).slice(0, 300)
-        : e.summary;
+      const body = e.bodyHtml ? extractPlainText(e.bodyHtml).slice(0, 300) : e.summary;
       return `- Exhibition "${e.title}": ${body} (${e.artworkIds.length} works)`;
     });
 
-    return [
-      "ARTWORKS:",
-      ...artworkLines,
-      "",
-      "EXHIBITIONS:",
-      ...exhibitionLines,
-    ].join("\n");
+    return ["ARTWORKS:", ...artworkLines, "", "EXHIBITIONS:", ...exhibitionLines].join("\n");
   },
 };

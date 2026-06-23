@@ -4,8 +4,7 @@ import "./styles/globals.css";
 
 export const metadata: Metadata = {
   title: "ArtSpace",
-  description:
-    "A headless contemporary art gallery — Next.js portfolio project.",
+  description: "A headless contemporary art gallery — Next.js portfolio project.",
 };
 
 type RootLayoutProps = { children: React.ReactNode };

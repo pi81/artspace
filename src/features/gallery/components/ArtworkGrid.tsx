@@ -13,7 +13,7 @@ export function ArtworkGrid() {
   return (
     <div>
       <h1 className="text-3xl font-semibold tracking-tight">{t("Artworks")}</h1>
-      <p className="text-muted mt-2">{t("Browse the permanent collection.")}</p>
+      <p className="mt-2 text-muted">{t("Browse the permanent collection.")}</p>
       <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {artworks.map((artwork, index) => {
           const image = artwork.images[0];
@@ -28,16 +28,16 @@ export function ArtworkGrid() {
                         alt={image.alt}
                         priority={index < 4}
                         cover
-                        className="transition group-hover:scale-105"
+                        className="object-top transition-transform duration-300 ease-out group-hover:scale-105"
                       />
                     </div>
                   ) : null}
                   <h2 className="font-medium">{artwork.title}</h2>
-                  <p className="text-muted mt-1 text-sm">{artwork.artist}</p>
+                  <p className="mt-1 text-sm text-muted">{artwork.artist}</p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {artwork.year ? <Badge>{artwork.year}</Badge> : null}
                     {artwork.medium ? (
-                      <Badge className="text-muted bg-black/5 dark:bg-white/10">
+                      <Badge className="bg-black/5 text-muted dark:bg-white/10">
                         {artwork.medium}
                       </Badge>
                     ) : null}

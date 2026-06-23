@@ -2,8 +2,9 @@
 
 import { Badge } from "@/components/ui/Badge";
 import { CmsImage } from "@/components/ui/CmsImage";
+import { backLinkClass } from "@/components/ui/interactive";
 import { useArtwork } from "@/hooks/useCmsQueries";
-import { GutenbergContent } from "@/lib/gutenberg/content/GutenbergContent";
+import { GutenbergContent } from "@/lib/cms/content/gutenberg";
 import { t } from "@/lib/i18n/t";
 import Link from "next/link";
 
@@ -17,17 +18,12 @@ export function ArtworkDetail({ slug }: ArtworkDetailProps) {
 
   return (
     <article>
-      <Link
-        href="/artworks"
-        className="text-muted text-sm hover:text-(--foreground)"
-      >
+      <Link href="/artworks" className={backLinkClass}>
         ← {t("Back to artworks")}
       </Link>
       <header className="mt-4">
-        <h1 className="text-3xl font-semibold tracking-tight">
-          {artwork.title}
-        </h1>
-        <p className="text-muted mt-2 text-lg">{artwork.artist}</p>
+        <h1 className="text-3xl font-semibold tracking-tight">{artwork.title}</h1>
+        <p className="mt-2 text-lg text-muted">{artwork.artist}</p>
         <div className="mt-3 flex flex-wrap gap-2">
           {artwork.year ? <Badge>{artwork.year}</Badge> : null}
           {artwork.medium ? <Badge>{artwork.medium}</Badge> : null}
@@ -46,7 +42,7 @@ export function ArtworkDetail({ slug }: ArtworkDetailProps) {
         </figure>
       ) : null}
       <div className="mt-8">
-        <GutenbergContent html={artwork.bodyHtml} />
+        <GutenbergContent body={artwork.bodyHtml} />
       </div>
     </article>
   );
