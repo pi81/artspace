@@ -1,6 +1,6 @@
-import type { BlockHandlerProps } from "../types/block-handler";
-import { renderWpBlockHtml } from "../wp-block-html";
+import type { BlockHandlerProps } from "@frontkom/block-react-parser";
+import { renderBlockWithClass } from "../lib/render-block-with-class";
 
-export function ListBlock({ innerHtml }: BlockHandlerProps) {
-  return renderWpBlockHtml(innerHtml, "wp-block-list");
+export function ListBlock({ block }: BlockHandlerProps) {
+  return renderBlockWithClass(block, "wp-block-list");
 }

@@ -1,0 +1,13 @@
+diff --git a/node_modules/@frontkom/block-react-parser/dist/components/Tree.js b/node_modules/@frontkom/block-react-parser/dist/components/Tree.js
+index eeafb98..16910a3 100644
+--- a/node_modules/@frontkom/block-react-parser/dist/components/Tree.js
++++ b/node_modules/@frontkom/block-react-parser/dist/components/Tree.js
+@@ -16,7 +16,7 @@ function Tree(_ref) {
+   const CustomTag = (0, _Context.useTagComponent)(node.name);
+   (0, _attribsProps.default)(node.attribs);
+   if (node.type === "text") {
+-    if (node.data === "[innerBlocks]") {
++    if (node.data && node.data.includes("[innerBlocks]")) {
+       // eslint-disable-next-line react/no-array-index-key
+       return block.innerBlocks?.map((inner, index) => /*#__PURE__*/React.createElement(_Block.default, {
+         block: inner,
