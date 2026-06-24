@@ -10,16 +10,16 @@ export function ArtistGrid() {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold tracking-tight">{t("Artists")}</h1>
-      <p className="mt-2 text-muted">{t("Meet the artists in our collection.")}</p>
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <h1 className="page-title">{t("Artists")}</h1>
+      <p className="page-lead">{t("Meet the artists in our collection.")}</p>
+      <ul className="grid-catalog">
         {artists.map((artist) => (
           <li key={artist.id}>
             <Link href={`/artists/${artist.slug}`}>
-              <Card className="transition hover:shadow-md">
+              <Card className="card-interactive">
                 <h2 className="font-medium">{artist.name}</h2>
                 {(artist.birthYear ?? artist.deathYear) ? (
-                  <p className="mt-1 text-sm text-muted">
+                  <p className="card-meta">
                     {artist.birthYear ?? "?"} — {artist.deathYear ?? "?"}
                   </p>
                 ) : null}

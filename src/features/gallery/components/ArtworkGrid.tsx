@@ -12,15 +12,15 @@ export function ArtworkGrid() {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold tracking-tight">{t("Artworks")}</h1>
-      <p className="mt-2 text-muted">{t("Browse the permanent collection.")}</p>
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <h1 className="page-title">{t("Artworks")}</h1>
+      <p className="page-lead">{t("Browse the permanent collection.")}</p>
+      <ul className="grid-catalog">
         {artworks.map((artwork, index) => {
           const image = artwork.images[0];
           return (
             <li key={artwork.id}>
               <Link href={`/artworks/${artwork.slug}`}>
-                <Card className="group h-full overflow-hidden transition hover:shadow-md">
+                <Card className="card-interactive group h-full overflow-hidden">
                   {image ? (
                     <div className="-mx-4 -mt-4 mb-3 aspect-4/3 overflow-hidden">
                       <CmsImage
@@ -28,18 +28,16 @@ export function ArtworkGrid() {
                         alt={image.alt}
                         priority={index < 4}
                         cover
-                        className="object-top transition-transform duration-300 ease-out group-hover:scale-105"
+                        className="image-hover-zoom object-top ease-out"
                       />
                     </div>
                   ) : null}
                   <h2 className="font-medium">{artwork.title}</h2>
-                  <p className="mt-1 text-sm text-muted">{artwork.artist}</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
+                  <p className="card-meta">{artwork.artist}</p>
+                  <div className="badge-row mt-2">
                     {artwork.year ? <Badge>{artwork.year}</Badge> : null}
                     {artwork.medium ? (
-                      <Badge className="bg-black/5 text-muted dark:bg-white/10">
-                        {artwork.medium}
-                      </Badge>
+                      <Badge className="badge-subtle">{artwork.medium}</Badge>
                     ) : null}
                   </div>
                 </Card>
