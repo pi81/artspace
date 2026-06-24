@@ -1,3 +1,4 @@
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/features/gallery/components/SiteHeader";
 import clsx from "clsx";
 import { SkipLink } from "./SkipLink";
@@ -15,10 +16,14 @@ export function PageShell({ children, className }: PageShellProps) {
       <main
         id="content"
         tabIndex={-1}
-        className={clsx("mx-auto max-w-6xl px-4 py-12 outline-none", className)}
+        className={clsx(
+          "page-container min-h-[70vh] px-4 py-10 outline-none sm:py-12",
+          className,
+        )}
       >
         {children}
       </main>
+      <SiteFooter />
     </>
   );
 }

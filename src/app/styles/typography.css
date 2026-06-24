@@ -98,4 +98,71 @@
   ol.wp-block-list {
     list-style: decimal;
   }
+
+  .content {
+    max-width: 42rem;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: color-mix(in srgb, var(--foreground) 92%, transparent);
+  }
+
+  .content-wide {
+    max-width: none;
+  }
+
+  .wp-block-image {
+    margin-block: 1.75rem;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      border: 1px solid color-mix(in srgb, var(--foreground) 8%, transparent);
+    }
+  }
+
+  .wp-block-gallery {
+    margin-block: 1.75rem;
+    display: grid;
+    gap: 0.75rem;
+
+    &.columns-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &.columns-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    &.columns-default {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .wp-block-image {
+      margin-block: 0;
+    }
+  }
+
+  .wp-block-quote {
+    margin-block: 2rem;
+    padding: 1.25rem 0 1.25rem 1.25rem;
+    border-left: 3px solid var(--color-accent);
+    font-family: var(--font-serif);
+
+    p {
+      margin-block: 0;
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+
+    cite {
+      display: block;
+      margin-top: 0.75rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-style: normal;
+      color: var(--color-muted);
+    }
+  }
 }
