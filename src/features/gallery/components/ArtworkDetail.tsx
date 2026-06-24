@@ -22,11 +22,11 @@ export function ArtworkDetail({ slug }: ArtworkDetailProps) {
         ← {t("Back to artworks")}
       </Link>
 
-      <header className="mt-6 border-b border-black/10 pb-8 lg:pb-10 dark:border-white/10">
+      <header className="detail-header detail-header--spacious">
         <div className="grid gap-8 lg:grid-cols-3 lg:items-start lg:gap-10">
           {image ? (
             <figure className="lg:col-span-2 lg:col-start-2 lg:row-start-1">
-              <div className="overflow-hidden rounded-xl border border-black/10 bg-black/2 shadow-md dark:border-white/10 dark:bg-white/5">
+              <div className="surface-panel--elevated">
                 <CmsImage
                   src={image.url}
                   alt={image.alt}
@@ -40,12 +40,10 @@ export function ArtworkDetail({ slug }: ArtworkDetailProps) {
           ) : null}
 
           <div className="lg:col-start-1 lg:row-start-1">
-            <p className="text-sm font-medium tracking-wide text-accent uppercase">{t("Artwork")}</p>
-            <h1 className="mt-2 font-serif text-4xl font-semibold tracking-tight lg:text-5xl">
-              {artwork.title}
-            </h1>
+            <p className="eyebrow">{t("Artwork")}</p>
+            <h1 className="detail-title detail-title--lg">{artwork.title}</h1>
             <p className="mt-3 text-xl text-muted">{artwork.artist}</p>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="badge-row mt-4">
               {artwork.year ? <Badge>{artwork.year}</Badge> : null}
               {artwork.medium ? <Badge>{artwork.medium}</Badge> : null}
             </div>
@@ -53,7 +51,7 @@ export function ArtworkDetail({ slug }: ArtworkDetailProps) {
         </div>
       </header>
 
-      <div className="content content-wide mt-10">
+      <div className="content content-wide detail-body">
         <GutenbergContent body={artwork.bodyHtml} />
       </div>
     </article>

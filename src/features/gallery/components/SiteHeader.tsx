@@ -39,7 +39,7 @@ export function SiteHeader() {
   }, [menuOpen]);
 
   return (
-    <header className="bg-background/80 sticky top-0 z-20 border-b border-black/10 backdrop-blur dark:border-white/10">
+    <header className="bg-background/80 border-subtle sticky top-0 z-20 border-b backdrop-blur">
       <div className="page-container flex items-center justify-between gap-4 px-4 py-4">
         <Link
           href="/"
@@ -104,7 +104,7 @@ export function SiteHeader() {
         id={menuId}
         aria-label={t("Primary navigation")}
         hidden={!menuOpen}
-        className="border-t border-black/10 md:hidden dark:border-white/10"
+        className="border-subtle border-t md:hidden"
       >
         <ul className="page-container px-2 py-2">
           {navItems.map((item) => (
