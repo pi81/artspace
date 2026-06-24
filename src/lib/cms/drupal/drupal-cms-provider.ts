@@ -3,17 +3,24 @@ import { CmsNotFoundError } from "../errors";
 import artistsFixture from "../fixtures/drupal/artists.json";
 import artworksFixture from "../fixtures/drupal/artworks.json";
 import exhibitionsFixture from "../fixtures/drupal/exhibitions.json";
+import { applyFixtureGutenbergBodies } from "../fixtures/gutenberg/apply-fixture-bodies";
 import { throwIfAborted } from "../signals";
 import type { Artist, Artwork, CMSProvider, Exhibition } from "../types";
 import { DrupalCollectionResponseSchema } from "./drupal-raw-schemas";
 import { mapDrupalArtist, mapDrupalArtwork, mapDrupalExhibition } from "./map-drupal-node";
 
-const fixtureArtworks =
-  DrupalCollectionResponseSchema.parse(artworksFixture).data.map(mapDrupalArtwork);
-const fixtureArtists =
-  DrupalCollectionResponseSchema.parse(artistsFixture).data.map(mapDrupalArtist);
-const fixtureExhibitions =
-  DrupalCollectionResponseSchema.parse(exhibitionsFixture).data.map(mapDrupalExhibition);
+const fixtureArtworks = applyFixtureGutenbergBodies(
+  DrupalCollectionResponseSchema.parse(artworksFixture).data.map(mapDrupalArtwork),
+  "artwork",
+);
+const fixtureArtists = applyFixtureGutenbergBodies(
+  DrupalCollectionResponseSchema.parse(artistsFixture).data.map(mapDrupalArtist),
+  "artist",
+);
+const fixtureExhibitions = applyFixtureGutenbergBodies(
+  DrupalCollectionResponseSchema.parse(exhibitionsFixture).data.map(mapDrupalExhibition),
+  "exhibition",
+);
 
 async function drupalFetch<T>(path: string, signal: AbortSignal): Promise<T> {
   const base = getDrupalJsonApiBase();

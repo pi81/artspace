@@ -1,6 +1,6 @@
-import type { BlockHandlerProps } from "../types/block-handler";
-import { renderWpBlockHtml } from "../wp-block-html";
+import type { BlockHandlerProps } from "@frontkom/block-react-parser";
+import { renderBlockWithClass } from "../lib/render-block-with-class";
 
-export function HeadingBlock({ innerHtml }: BlockHandlerProps) {
-  return renderWpBlockHtml(innerHtml, "wp-block-heading");
+export function HeadingBlock({ block }: BlockHandlerProps) {
+  return renderBlockWithClass(block, "wp-block-heading");
 }

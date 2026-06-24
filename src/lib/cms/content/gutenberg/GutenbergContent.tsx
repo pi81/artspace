@@ -1,6 +1,12 @@
 "use client";
 
-import { getGutenbergParser } from "./parser/gutenberg-parser";
+import { parseBlocks, Provider } from "@frontkom/block-react-parser";
+import * as React from "react";
+import { gutenbergBlocks } from "./lib/custom-blocks";
+import { gutenbergTags } from "./lib/custom-tags";
+
+const scope = globalThis;
+scope.React ??= React;
 
 type GutenbergContentProps = {
   body: string;
@@ -9,5 +15,9 @@ type GutenbergContentProps = {
 export function GutenbergContent({ body }: GutenbergContentProps) {
   if (!body) return null;
 
-  return getGutenbergParser().render(body);
+  return (
+    <Provider value={{ CustomBlocks: gutenbergBlocks, CustomTags: gutenbergTags }}>
+      {parseBlocks(body)}
+    </Provider>
+  );
 }
