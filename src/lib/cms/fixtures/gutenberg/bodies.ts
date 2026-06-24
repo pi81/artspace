@@ -194,11 +194,25 @@ export const fixtureExhibitionBodies: Record<string, string> = {
       ],
       3,
     ),
+    wpQuote(
+      "Great things are done by a series of small things brought together.",
+      "Vincent van Gogh",
+    ),
   ),
   "light-and-color": joinBlocks(
     wpParagraph(
       "An intimate look at how light transforms perception across the impressionist canon.",
     ),
+    wpHeading(2, "Themes"),
     wpList(["Plein-air impressionism", "Reflected light on water", "Late Monet serial studies"]),
+    wpGallery(
+      [
+        { id: 701, src: m.waterLilies, alt: "Water Lilies Reflection" },
+        { id: 702, src: m.parisStreet, alt: "Paris Street, Rainy Day" },
+        { id: 703, src: m.childsBath, alt: "The Child's Bath" },
+      ],
+      3,
+    ),
+    wpQuote("Color is my day-long obsession, joy and torment.", "Claude Monet"),
   ),
 };

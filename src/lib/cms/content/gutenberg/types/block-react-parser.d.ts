@@ -29,9 +29,7 @@ declare module "@frontkom/block-react-parser" {
     children: ReactNode;
   }>;
 
-  export function customBlocks(
-    blocks?: Record<string, BlockHandler>,
-  ): Record<string, BlockHandler>;
+  export function customBlocks(blocks?: Record<string, BlockHandler>): Record<string, BlockHandler>;
 
   export function customTags(
     tags?: Record<string, ComponentType<TagHandlerProps>>,

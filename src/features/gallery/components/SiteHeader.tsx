@@ -40,7 +40,7 @@ export function SiteHeader() {
 
   return (
     <header className="bg-background/80 sticky top-0 z-20 border-b border-black/10 backdrop-blur dark:border-white/10">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
+      <div className="page-container flex items-center justify-between gap-4 px-4 py-4">
         <Link
           href="/"
           className={clsx(
@@ -106,7 +106,7 @@ export function SiteHeader() {
         hidden={!menuOpen}
         className="border-t border-black/10 md:hidden dark:border-white/10"
       >
-        <ul className="mx-auto max-w-6xl px-2 py-2">
+        <ul className="page-container px-2 py-2">
           {navItems.map((item) => (
             <li key={item.href}>
               <Link
