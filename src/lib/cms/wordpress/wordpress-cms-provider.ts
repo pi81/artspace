@@ -1,6 +1,5 @@
 import { CMS_REVALIDATE_SECONDS, getWpRestBase } from "../config";
 import { CmsNotFoundError } from "../errors";
-import { applyFixtureGutenbergBodies } from "../fixtures/gutenberg/apply-fixture-bodies";
 import artistsFixture from "../fixtures/wordpress/artists.json";
 import artworksFixture from "../fixtures/wordpress/artworks.json";
 import exhibitionsFixture from "../fixtures/wordpress/exhibitions.json";
@@ -9,18 +8,9 @@ import type { Artist, Artwork, CMSProvider, Exhibition } from "../types";
 import { mapWpArtist, mapWpArtwork, mapWpExhibition } from "./map-wp-post";
 import { WpPostsResponseSchema } from "./wp-raw-schemas";
 
-const fixtureArtworks = applyFixtureGutenbergBodies(
-  WpPostsResponseSchema.parse(artworksFixture).map(mapWpArtwork),
-  "artwork",
-);
-const fixtureArtists = applyFixtureGutenbergBodies(
-  WpPostsResponseSchema.parse(artistsFixture).map(mapWpArtist),
-  "artist",
-);
-const fixtureExhibitions = applyFixtureGutenbergBodies(
-  WpPostsResponseSchema.parse(exhibitionsFixture).map(mapWpExhibition),
-  "exhibition",
-);
+const fixtureArtworks = WpPostsResponseSchema.parse(artworksFixture).map(mapWpArtwork);
+const fixtureArtists = WpPostsResponseSchema.parse(artistsFixture).map(mapWpArtist);
+const fixtureExhibitions = WpPostsResponseSchema.parse(exhibitionsFixture).map(mapWpExhibition);
 
 async function wpFetch<T>(path: string, signal: AbortSignal): Promise<T> {
   const base = getWpRestBase();
