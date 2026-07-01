@@ -20,6 +20,6 @@ export const IIIF_SIZES = ["843", "600"] as const;
 export type IiifSize = (typeof IIIF_SIZES)[number];
 
 export const FIXTURE_DIRS = [
-  "src/lib/cms/fixtures/wordpress",
-  "src/lib/cms/fixtures/drupal",
+  "data/artspace/cms/fixtures/wordpress",
+  "data/artspace/cms/fixtures/drupal",
 ] as const;

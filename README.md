@@ -46,7 +46,7 @@ Public APIs are fixed early; implementations mature in code between stages — n
 | i18n       | `t("…")`                           | Identity (returns key as-is)                          |
 | Plain text | `extractPlainText(html)`           | HTML strip for AI / metadata                          |
 | Media      | `getMediaProvider()`               | AIC IIIF resolution + CMS URL helpers                 |
-| AI         | `getLlmProvider()`                 | Mock stream (chat UI planned)                         |
+| AI         | `getLlmProvider()`                 | Vercel AI SDK + mock fallback; floating chat widget |
 
 **Rule:** feature code imports only stable APIs. Parser internals stay behind `GutenbergContent`.
 
@@ -62,7 +62,7 @@ Development follows a staged plan in [`docs/`](docs/README.md). Summary:
 | **1** | Domain model, `CMSProvider` Strategy, WP/Drupal fixtures, stable seams | **Done**        |
 | **2** | Frontkom Gutenberg parser, live CMS fetch, AIC media, `CmsImage`       | **Done**        |
 | **3** | UI polish — theme toggle, motion, responsive grid refinements, README  | **In progress** |
-| **4** | AI Q&A assistant — `/api/chat`, grounded context, chat widget          | **Planned**     |
+| **4** | AI Q&A assistant — `/api/chat`, grounded context, chat widget          | **Done**        |
 
 ### Completed so far
 
@@ -75,11 +75,12 @@ Development follows a staged plan in [`docs/`](docs/README.md). Summary:
 - Optional live CMS fetch (`WP_API_URL`, `DRUPAL_BASE_URL`) with fixture fallback
 - Media provider for AIC IIIF URLs; `npm run seed:media` for fixture URL refresh
 - Layout shell: header, footer, skip link, responsive navigation
+- AI assistant: `/api/chat` route, CMS-grounded context, floating `ChatWidget` with `useChat`
+- Model catalog (`CHAT_MODELS`) with Gateway + Google providers; mock fallback without API keys
 
 ### Still planned
 
 - **Stage 3:** `next-themes` manual dark/light toggle, Framer Motion page/grid animations, final visual polish
-- **Stage 4:** Vercel AI SDK provider, `/api/chat` route, floating chat widget grounded in CMS content
 
 ---
 
@@ -94,6 +95,7 @@ Development follows a staged plan in [`docs/`](docs/README.md). Summary:
 | Server state  | TanStack Query 5                         |
 | Validation    | Zod 4                                    |
 | Gutenberg     | `@frontkom/block-react-parser`           |
+| AI            | Vercel AI SDK (`ai`, `@ai-sdk/react`)    |
 | Lint / format | ESLint 9 + Prettier                      |
 
 Full staged guide: [`docs/README.md`](docs/README.md).
@@ -132,6 +134,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | `CMS_TYPE`        | No (default: `wordpress`) | `wordpress` \| `drupal` | Which CMS adapter serves this deployment         |
 | `WP_API_URL`      | No                        | Site URL                | Live WordPress fetch; omit to use fixtures       |
 | `DRUPAL_BASE_URL` | No                        | Site URL                | Live Drupal JSON:API fetch; omit to use fixtures |
+| `AI_GATEWAY_API_KEY` | No                     | API key                 | Vercel Gateway — OpenAI / Anthropic models       |
+| `GOOGLE_GENERATIVE_AI_API_KEY` | No           | API key                 | Google Gemini models (direct API)                |
 
 `CMS_TYPE` is server-only — no `NEXT_PUBLIC_` prefix.
 
@@ -154,14 +158,15 @@ src/
   api/                    # getCmsProvider, query factories, withSignal
   components/             # ui/, layout/, errors/
   features/gallery/       # Domain UI (grids, detail views, header)
+  features/assistant/   # Chat widget (Stage 4)
   hooks/                  # Thin TanStack Query wrappers
   lib/
-    cms/                  # Strategy layer — adapters, schemas, fixtures
-    cms/content/gutenberg # GutenbergContent + block handlers
-    cms/media/            # AIC media provider
-    ai/                   # LLM seam + content retriever (Stage 4)
+    ai/                   # Generic LLM seam, model catalog (tenant-agnostic)
+    cms/                  # CMS adapters (fixture payloads wired per tenant)
     i18n/                 # t() identity impl
+  project/                # Active tenant — prompts, mock data wiring, CMS fixtures
   providers/              # QueryClient + AppProvider
+data/                     # Tenant mock/fixture payloads (outside src)
 docs/                     # Staged implementation guide
 scripts/                  # seed-media.ts
 ```

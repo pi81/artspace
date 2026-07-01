@@ -1,11 +1,11 @@
-import { createCmsProvider } from "@/lib/cms/create-cms-provider";
 import type { CMSProvider } from "@/lib/cms/types";
+import { createArtspaceCmsProvider } from "@tenant/cms-provider";
 
 let cmsProvider: CMSProvider | undefined;
 
 export function getCmsProvider(): CMSProvider {
   if (!cmsProvider) {
-    cmsProvider = createCmsProvider();
+    cmsProvider = createArtspaceCmsProvider();
   }
   return cmsProvider;
 }

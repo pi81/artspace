@@ -1,34 +1,50 @@
-export type ChatMessage = {
-  role: "user" | "assistant" | "system";
-  content: string;
-};
+import { createTextUIMessageStreamResponse } from "@/lib/ai/create-text-ui-message-stream-response";
+import {
+  convertToModelMessages,
+  generateText,
+  streamText,
+  type LanguageModel,
+  type UIMessage,
+} from "ai";
 
 export type LLMProvider = {
   streamChat(input: {
     system: string;
-    messages: ChatMessage[];
+    messages: UIMessage[];
     signal?: AbortSignal;
-  }): Promise<ReadableStream<Uint8Array>>;
+  }): Promise<Response>;
 };
 
-/** Mock LLM stream until the chat assistant ships. */
-export const llmProvider: LLMProvider = {
-  async streamChat({ messages }) {
-    const lastUser = [...messages].reverse().find((m) => m.role === "user");
-    const reply = `Demo assistant. You asked: "${lastUser?.content ?? ""}".`;
+export function createStreamingLlmProvider(model: LanguageModel): LLMProvider {
+  return {
+    async streamChat({ system, messages, signal }) {
+      const result = streamText({
+        model,
+        system,
+        messages: await convertToModelMessages(messages),
+        abortSignal: signal,
+      });
 
-    return new ReadableStream<Uint8Array>({
-      start(controller) {
-        const encoder = new TextEncoder();
-        const tokens = reply.split(" ");
+      return result.toUIMessageStreamResponse({ originalMessages: messages });
+    },
+  };
+}
 
-        tokens.forEach((token, index) => {
-          const chunk = index === tokens.length - 1 ? token : `${token} `;
-          controller.enqueue(encoder.encode(chunk));
-        });
+export function createBufferedLlmProvider(model: LanguageModel): LLMProvider {
+  return {
+    async streamChat({ system, messages, signal }) {
+      const { text } = await generateText({
+        model,
+        system,
+        messages: await convertToModelMessages(messages),
+        abortSignal: signal,
+      });
 
-        controller.close();
-      },
-    });
-  },
-};
+      return createTextUIMessageStreamResponse({
+        text,
+        originalMessages: messages,
+        streaming: false,
+      });
+    },
+  };
+}

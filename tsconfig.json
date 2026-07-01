@@ -20,7 +20,11 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@assistant/*": ["./src/features/assistant/*"],
+      "@data/*": ["./data/*"],
+      "@project/*": ["./src/project/*"],
+      "@tenant/*": ["./src/project/artspace/*"]
     }
   },
   "include": [
